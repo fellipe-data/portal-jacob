@@ -530,16 +530,13 @@ function render(filter){
     const buyBtn = link
       ? `<a class="b-buy" href="${link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Comprar · R$ ${b.p}</a>`
       : `<a class="b-buy" href="javascript:void(0)" onclick="event.stopPropagation();soonModal()">Comprar · R$ ${b.p}</a>`;
-    // fallback tipográfico caso a imagem da capa não exista ainda
-    const typoCover = `<div class="c-cat">${CAT[b.c]}</div>
+    const coverInner = b.img
+      ? `<img class="cover-img" src="${b.img}" alt="${b.t}" loading="lazy">
+         ${b.url ? '<div class="c-open">Abrir página →</div>' : ''}`
+      : `<div class="c-cat">${CAT[b.c]}</div>
          <div class="c-title">${b.short || b.t}</div>
          <div class="c-foot"><div class="c-rule"></div><div class="c-author">Jacob P. Goldberg</div></div>
          ${b.url ? '<div class="c-open">Abrir página →</div>' : ''}`;
-    const onerr = `this.closest('.cover').classList.remove('cover-art');this.closest('.cover').classList.add('${pal}');this.closest('.book').classList.remove('has-art');this.outerHTML=\`${typoCover.replace(/`/g,'\\`')}\``;
-    const coverInner = b.img
-      ? `<img class="cover-img" src="${b.img}" alt="${b.t}" loading="lazy" onerror="${onerr}">
-         ${b.url ? '<div class="c-open">Abrir página →</div>' : ''}`
-      : typoCover;
     el.innerHTML = `
       <div class="cover ${b.img ? 'cover-art' : pal}">
         ${coverInner}
