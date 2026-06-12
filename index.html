@@ -159,6 +159,12 @@
   }
   .featured p{color:var(--muted);max-width:560px;margin-bottom:30px;font-size:18px}
   .featured .meta-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  /* capa ilustrada na obra em destaque */
+  .featured-cover-link{display:block;justify-self:start;max-width:300px;width:100%;
+    border-radius:2px;transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s}
+  .featured-cover-link:hover{transform:translateY(-8px) rotateZ(-.4deg)}
+  .featured-cover{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:2px;
+    box-shadow:0 22px 48px rgba(0,0,0,.55),0 0 0 1px rgba(201,162,75,.18)}
   .price{font-family:'Cinzel',serif;font-size:26px;color:var(--ink-text);letter-spacing:.02em}
   .price s{color:var(--muted);font-size:17px;margin-right:10px;opacity:.6}
   .btn{
@@ -354,11 +360,9 @@
 
 <section class="featured wrap" id="destaque">
   <div class="featured-inner reveal">
-    <div class="cover c-ox" style="max-width:280px">
-      <div class="c-cat">Psicologia</div>
-      <div class="c-title">Da Morte<br>e do Viver</div>
-      <div class="c-foot"><div class="c-rule"></div><div class="c-author">Jacob P. Goldberg</div></div>
-    </div>
+    <a class="featured-cover-link" href="da-morte-e-do-viver.html" aria-label="Da Morte e do Viver">
+      <img class="featured-cover" src="media/covers/da_morte_e_do_viver.jpg" alt="Capa de Da Morte e do Viver">
+    </a>
     <div>
       <div class="featured-tag">✦ Obra em destaque</div>
       <h2>Da Morte e do Viver: uma visão psicológica</h2>
@@ -367,7 +371,7 @@
       <div class="meta-row">
         <div class="price"><s>R$ 49,90</s> R$ 29,90</div>
         <a href="#" class="btn" id="featured-buy" data-book="Da Morte e do Viver: uma visão psicológica">Comprar e-book</a>
-        <a href="#" class="btn ghost">Ler trecho</a>
+        <a href="da-morte-e-do-viver.html" class="btn ghost">Ler trecho</a>
       </div>
     </div>
   </div>
