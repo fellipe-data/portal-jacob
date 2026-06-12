@@ -120,6 +120,15 @@
     font-family:'Cinzel',serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-soft);
   }
   .vframe.playing .vbtn{opacity:0;pointer-events:none}
+  /* botão "assista ao filme completo" → YouTube */
+  .watch-full{display:inline-flex;align-items:center;gap:11px;margin:22px auto 0;
+    font-family:'Cinzel',serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold-soft);text-decoration:none;border:1px solid var(--rule);border-radius:2px;
+    padding:13px 26px;transition:all .3s;background:rgba(201,162,75,.04)}
+  .watch-full svg{width:22px;height:22px;fill:var(--gold-soft);transition:fill .3s}
+  .watch-full:hover{border-color:var(--gold);background:rgba(201,162,75,.1);color:var(--gold);transform:translateY(-1px)}
+  .watch-full:hover svg{fill:var(--gold)}
+  .stage{display:flex;flex-direction:column;align-items:center}
   @media(max-width:860px){.stage{margin-top:34px}.vquote-top blockquote{font-size:25px}}
 
   @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
@@ -322,11 +331,16 @@
         <video id="hero-video" poster="media/hero_poster.jpg" preload="metadata" playsinline controls>
           <source src="media/hero_jacob_92.mp4" type="video/mp4">
         </video>
-        <button class="vbtn" id="vbtn" aria-label="Assistir ao filme com som">
+        <button class="vbtn" id="vbtn" aria-label="Reproduzir com som">
           <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="vlabel">▸ Assista na íntegra · com som · 7 min</span>
+          <span class="vlabel">▸ Toque para ouvir o autor</span>
         </button>
       </div>
+      <!-- TROCAR data-yt pelo link real do YouTube quando o filme estiver lá -->
+      <a class="watch-full" id="watch-full" data-yt="" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        Assista ao filme completo · 7 min
+      </a>
     </div>
   </div>
 </section>
@@ -528,6 +542,15 @@ vbtn.addEventListener('click',()=>{
 });
 // se o usuário pausar pelos controles nativos no início, não reexibe o overlay
 video.addEventListener('ended',()=>{vframe.classList.remove('playing');video.currentTime=0;});
+
+// "Assista ao filme completo" → YouTube (ou aviso "em breve" se sem link ainda)
+const wf=document.getElementById('watch-full');
+if(wf){
+  const yt=wf.dataset.yt;
+  if(yt){ wf.href=yt; }
+  else { wf.addEventListener('click',e=>{ e.preventDefault();
+    alert('O filme completo estará disponível em breve no YouTube.'); }); }
+}
 
 // filters
 document.querySelectorAll('#filters button').forEach(btn=>{
