@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psicanálise — Metanoia · Jacob Pinheiro Goldberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0b07;--bg2:#161109;--paper:#f1e7d6;--gold:#c9a24b;--gold-soft:#d9bd7e;
+    --ink-text:#ece3d2;--muted:#988b70;--ox:#3a1417;--rule:rgba(201,162,75,.2);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink-text);font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;line-height:1.62;overflow-x:hidden;position:relative}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(120% 90% at 50% 6%,transparent 42%,rgba(0,0,0,.5) 100%)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 34px;position:relative;z-index:2}
+  h1,h2,h3,.cz{font-family:'Cinzel',serif}
+
+  header{position:sticky;top:0;z-index:40;backdrop-filter:blur(8px);background:linear-gradient(to bottom,rgba(14,11,7,.93),rgba(14,11,7,.7));border-bottom:1px solid var(--rule)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 34px;max-width:1080px;margin:0 auto}
+  .back{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+  .back:hover{color:var(--gold-soft)}
+  .back::before{content:"← "}
+  .brand{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.24em;font-size:12px;color:var(--gold-soft);text-transform:uppercase}
+
+  /* hero */
+  .hero{padding:80px 0 60px}
+  .hero-grid{display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:center}
+  .hero .eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .hero h1{font-weight:600;font-size:clamp(40px,6.4vw,82px);line-height:.98;letter-spacing:.02em}
+  .hero .tagline{font-style:italic;font-weight:300;font-size:clamp(20px,2.4vw,27px);color:var(--gold-soft);margin-top:14px}
+  .hero .meta{color:var(--muted);font-size:18px;margin-top:18px;font-style:italic}
+  .hero .cta{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:32px}
+  .price{font-family:'Cinzel',serif;font-size:24px;color:var(--ink-text)}
+  .price s{color:var(--muted);font-size:16px;opacity:.6;margin-right:8px}
+  .btn{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;background:var(--gold);color:#1a1306;border:none;padding:14px 32px;border-radius:1px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .35s}
+  .btn:hover{background:var(--gold-soft);transform:translateY(-2px);box-shadow:0 12px 30px rgba(201,162,75,.25)}
+
+  /* designed cover */
+  .cover{aspect-ratio:2/3;border-radius:2px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:28px 24px 24px;
+    box-shadow:0 24px 50px rgba(0,0,0,.55);background:linear-gradient(160deg,#241d14,#120d07)}
+  .cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(90deg,rgba(0,0,0,.34),transparent)}
+  .cover .c-cat{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+  .cover .c-title{font-family:'Cinzel',serif;font-weight:600;font-size:30px;line-height:1.04;color:#f0e6d2;text-align:center;align-self:center;margin:auto 0}
+  .cover .c-foot{text-align:center}
+  .cover .c-rule{width:36px;height:1px;background:var(--gold);margin:0 auto 10px;opacity:.7}
+  .cover .c-author{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.85}
+  @media(max-width:780px){.hero-grid{grid-template-columns:1fr;gap:40px;text-align:center}.cover{max-width:240px;margin:0 auto}.hero .cta{justify-content:center}}
+
+  /* generic section */
+  section{padding:58px 0}
+  .divider{height:1px;background:var(--rule);max-width:1012px;margin:0 auto}
+  .shead{margin-bottom:40px;text-align:center}
+  .shead .k{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+  .shead h2{font-weight:600;font-size:clamp(26px,3.4vw,40px);margin-top:12px;letter-spacing:.03em}
+
+  /* context */
+  .ctx{max-width:760px;margin:0 auto;text-align:center}
+  .ctx p{color:var(--muted);font-size:21px;line-height:1.7;margin-bottom:18px}
+  .ctx p strong{color:var(--ink-text);font-weight:500}
+  .ctx .creds{font-style:italic;color:var(--gold-soft);font-size:19px;margin-top:10px}
+  .who{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+  .who span{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:1px;padding:7px 14px}
+
+  /* themes */
+  .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .theme{border:1px solid var(--rule);border-radius:2px;padding:28px 26px;background:rgba(20,12,8,.3);transition:border-color .3s}
+  .theme:hover{border-color:var(--gold)}
+  .theme .n{font-family:'Cinzel',serif;color:var(--gold);font-size:12px;letter-spacing:.2em}
+  .theme h3{font-weight:600;font-size:22px;margin:10px 0 8px;letter-spacing:.01em;line-height:1.1}
+  .theme p{color:var(--muted);font-size:17.5px;line-height:1.5}
+  @media(max-width:780px){.themes{grid-template-columns:1fr}}
+
+  /* excerpts */
+  .excerpts{max-width:840px;margin:0 auto;display:flex;flex-direction:column;gap:54px}
+  .ex{position:relative}
+  .ex .qmark{font-family:'Cinzel',serif;color:var(--gold);font-size:60px;line-height:0;opacity:.4;display:block;height:30px}
+  .ex blockquote{font-style:italic;font-weight:300;font-size:clamp(23px,3vw,32px);line-height:1.34;color:var(--ink-text)}
+  .ex blockquote em{color:var(--gold-soft);font-style:italic}
+  .ex .src{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:18px}
+  .ex.dialogue{border-left:2px solid var(--rule);padding-left:30px}
+  .ex.dialogue .turn{margin-bottom:16px}
+  .ex.dialogue .turn:last-child{margin-bottom:0}
+  .ex.dialogue .spk{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+  .ex.dialogue .line{font-size:20px;color:var(--ink-text);line-height:1.55}
+  .ex.dialogue .line em{color:var(--gold-soft);font-style:italic}
+
+  /* reading sample */
+  .sample{max-width:740px;margin:0 auto;background:linear-gradient(180deg,rgba(20,12,8,.35),transparent);border:1px solid var(--rule);border-radius:2px;padding:48px 50px}
+  .sample .spk{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:22px 0 6px}
+  .sample .spk:first-child{margin-top:0}
+  .sample p{color:var(--ink-text);font-size:19px;line-height:1.66;margin-bottom:4px}
+  .sample .fade{margin-top:26px;color:var(--muted);font-style:italic;text-align:center;font-size:17px}
+
+  /* buy footer block */
+  .buyback{text-align:center;background:linear-gradient(135deg,rgba(36,29,20,.5),rgba(20,12,8,.2));border:1px solid var(--rule);border-radius:2px;padding:54px 40px}
+  .buyback h2{font-weight:600;font-size:clamp(24px,3.2vw,36px);letter-spacing:.02em;margin-bottom:10px}
+  .buyback p{color:var(--muted);font-style:italic;font-size:20px;margin-bottom:28px}
+  .buyback .cta{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap}
+  .btn.ghost{background:transparent;color:var(--gold-soft);border:1px solid var(--rule)}
+  .btn.ghost:hover{background:rgba(201,162,75,.1);box-shadow:none}
+
+  footer{padding:50px 0 64px;text-align:center;border-top:1px solid var(--rule);margin-top:20px}
+  footer p{color:var(--muted);font-size:15px;font-style:italic}
+  footer .fn{margin-top:14px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5d5544}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+  .reveal.in{opacity:1;transform:none}
+</style>
+<style>.cover.art{padding:0;background:#0e0b07;aspect-ratio:9/16;box-shadow:0 30px 60px rgba(0,0,0,.6)}.cover.art img{width:100%;height:100%;object-fit:cover;display:block}.cover.art::before{display:none}</style>
+</head><body>
+<header><nav class="nav"><a class="back" href="index.html">Voltar ao acervo</a><div class="brand">Jacob P. Goldberg</div></nav></header>
+<section class="hero"><div class="wrap"><div class="hero-grid">
+<div class="cover art reveal"><img src="media/covers/psicanalise-metanoia.jpg" alt="Psicanálise — Metanoia"></div>
+<div class="reveal"><div class="eyebrow">Psicanálise · ciência e cultura</div><h1>Psicanálise — Metanoia</h1><div class="tagline">A travessia da alma rumo à transformação.</div><div class="meta">Anos de cursos e palestras de Goldberg na Universidade de São Paulo, reunidos numa reflexão sobre a mudança profunda.</div>
+<div class="cta"><div class="price"><s>R$ 44,90</s> R$ 24,90</div><a href="#" class="btn" onclick="event.preventDefault();soon()">Comprar e-book</a></div></div>
+</div></div></section>
+<div class="divider"></div>
+<section><div class="wrap"><div class="shead reveal"><div class="k">A obra</div><h2>Sobre o livro</h2></div><div class="ctx reveal">
+      <p><strong>Metanoia</strong> — do grego, a mudança radical de mente e coração. É deste conceito que Goldberg parte para reunir mais de seis anos de cursos e palestras que ministrou na <strong>Universidade de São Paulo</strong>, entre 1981 e 1987.</p>
+      <p>Da psicologia da criatividade na ciência aos aspectos psicológicos da violência urbana, de Foucault ao discurso jurídico, este é Goldberg no cruzamento entre a <strong>psicanálise, a ciência e a cultura</strong> — sempre em busca daquilo que de fato transforma o ser humano.</p>
+      <p class="creds">Dedicado a seu filho Flávio, que fez com ele sua formação psicanalítica — e escreveu "O Direito no Divã", vencedor do Prêmio Jabuti.</p></div></div></section>
+<div class="divider"></div>
+<section><div class="wrap"><div class="shead reveal"><div class="k">O que você encontra</div><h2>Temas centrais</h2></div><div class="themes"><div class="theme reveal"><div class="n">01</div><h3>A metanoia</h3><p>A mudança que não é ajuste de superfície, mas conversão profunda do modo de ser e de ver.</p></div><div class="theme reveal"><div class="n">02</div><h3>Criatividade e ciência</h3><p>Por que o ato criativo, mesmo na ciência mais rigorosa, nasce de um território psíquico.</p></div><div class="theme reveal"><div class="n">03</div><h3>Foucault e o discurso jurídico</h3><p>O poder, a norma e a loucura — como as instituições moldam o que chamamos de razão.</p></div></div></div></section>
+<div class="divider"></div>
+<section><div class="wrap"><div class="shead reveal"><div class="k">Trechos</div><h2>Páginas escolhidas</h2></div><div class="excerpts">
+      <div class="ex reveal"><span class="qmark">"</span><blockquote>A psicanálise não cura para devolver alguém ao normal. <em>Ela acompanha uma metanoia</em> — a travessia rumo a um modo mais inteiro de existir.</blockquote><div class="src">Goldberg</div></div></div></div></section>
+<div class="divider"></div>
+<section><div class="wrap"><div class="shead reveal"><div class="k">Comece a ler</div><h2>As primeiras palavras</h2></div>
+<div class="sample reveal"><div class="spk">Jacob Pinheiro Goldberg</div><p>De 1981 até 1987, respondendo inicialmente a convite do professor Shozo Motoyama e a convicções íntimas, fundei e dirigi cursos e proferi palestras na Universidade de São Paulo — da psicologia da criatividade na ciência aos aspectos psicológicos da violência urbana, da história da psicologia ao discurso jurídico em Foucault.</p><p>O que reúne todos esses encontros é uma única pergunta: o que, de fato, transforma um ser humano?</p><div class="fade">— continua no e-book —</div></div></div></section>
+<section><div class="wrap"><div class="buyback reveal"><h2>Leve esta obra</h2><p>Seis anos de pensamento de Goldberg na USP, reunidos numa reflexão sobre a transformação.</p>
+<div class="cta"><div class="price" style="margin-right:6px"><s>R$ 44,90</s> R$ 24,90</div>
+<a href="#" class="btn" onclick="event.preventDefault();soon()">Comprar e-book</a><a href="index.html" class="btn ghost">Ver todo o acervo</a></div></div></div></section>
+<footer><div class="wrap"><p>Psicanálise — Metanoia · Jacob Pinheiro Goldberg</p><div class="fn">Acervo do percurso de J.P.G. · 2026</div></div></footer>
+<script>function soon(){alert('A loja digital está nos ajustes finais. Em breve esta obra poderá ser adquirida e baixada na hora.');}
+let io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script></body></html>
