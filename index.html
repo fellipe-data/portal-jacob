@@ -183,6 +183,10 @@
     padding:26px 22px 22px;box-shadow:0 18px 40px rgba(0,0,0,.5);
     transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s;
   }
+  /* capa ilustrada (imagem) — sem padding, foto preenche */
+  .cover.cover-art{padding:0;background:#0e0b07}
+  .cover-img{width:100%;height:100%;object-fit:cover;display:block}
+  .cover.cover-art::before{display:none}
   /* spine */
   .cover::before{
     content:"";position:absolute;left:0;top:0;bottom:0;width:14px;
@@ -337,7 +341,7 @@
         </button>
       </div>
       <!-- TROCAR data-yt pelo link real do YouTube quando o filme estiver lá -->
-      <a class="watch-full" id="watch-full" data-yt="" href="#" target="_blank" rel="noopener">
+      <a class="watch-full" id="watch-full" data-yt="https://youtu.be/abO3gHoIN0U" href="#" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
         Assista ao filme completo · 7 min
       </a>
@@ -440,17 +444,17 @@ const CHECKOUT = {
 
 // Curated catalog (deduped, typos fixed). cat: psi|lit|brasil|ensaio
 const BOOKS = [
-  {t:"Da Morte e do Viver: uma visão psicológica", c:"psi", y:2015, p:"29,90", pal:"c-ox", short:"Da Morte e do Viver"},
+  {t:"Da Morte e do Viver: uma visão psicológica", c:"psi", y:2015, p:"29,90", pal:"c-ox", short:"Da Morte e do Viver", img:"media/covers/da_morte_e_do_viver.jpg"},
   {t:"Psicanálise — Metanoia", c:"psi", y:2015, p:"24,90"},
   {t:"Emoção e Transmissão", c:"psi", y:2016, p:"24,90"},
   {t:"Imago no Face", c:"psi", y:2016, p:"24,90"},
-  {t:"Direito e Psicologia", c:"psi", y:2014, p:"24,90"},
+  {t:"Direito e Psicologia", c:"psi", y:2014, p:"24,90", img:"media/covers/direito_e_psicologia.jpg"},
   {t:"A Dialética Cabocla", c:"psi", y:2021, p:"24,90"},
   {t:"O Próximo do Mundo", c:"psi", y:2015, p:"19,90"},
   {t:"A Presença na Ausência", c:"psi", y:2015, p:"19,90"},
   {t:"Sentido e Existência", c:"psi", y:2014, p:"19,90"},
 
-  {t:"Golem", c:"lit", y:2014, p:"24,90", pal:"c-char"},
+  {t:"Golem", c:"lit", y:2014, p:"24,90", pal:"c-char", img:"media/covers/golem.jpg"},
   {t:"Golem, Anverso", c:"lit", y:2014, p:"24,90", pal:"c-char"},
   {t:"Eco e Reverberação", c:"lit", y:2014, p:"24,90"},
   {t:"Psicologia e Literatura", c:"lit", y:2015, p:"24,90"},
@@ -482,7 +486,7 @@ const BOOKS = [
   {t:"Viver Não É Preciso, Navegar É", c:"ensaio", y:2021, p:"9,90", pal:"c-char", sub:"artigo"},
   {t:"O Psicólogo e o Jornalista", c:"ensaio", y:2021, p:"9,90", pal:"c-char", sub:"entrevista"},
   {t:"Teoria da Psicanálise Social", c:"ensaio", y:2021, p:"9,90", pal:"c-char", sub:"entrevista"},
-  {t:"Jogo da Verdade", c:"ensaio", y:1985, p:"14,90", pal:"c-char", sub:"entrevista · TV Cultura", url:"jogo-da-verdade.html"},
+  {t:"Jogo da Verdade", c:"ensaio", y:1985, p:"14,90", pal:"c-char", sub:"entrevista · TV Cultura", url:"jogo-da-verdade.html", img:"media/covers/jogo_da_verdade.jpg"},
 ];
 
 // DEMO: botão de compra abre um aviso elegante (checkout em integração)
@@ -514,12 +518,16 @@ function render(filter){
     const buyBtn = link
       ? `<a class="b-buy" href="${link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Comprar · R$ ${b.p}</a>`
       : `<a class="b-buy" href="javascript:void(0)" onclick="event.stopPropagation();soonModal()">Comprar · R$ ${b.p}</a>`;
+    const coverInner = b.img
+      ? `<img class="cover-img" src="${b.img}" alt="${b.t}" loading="lazy">
+         ${b.url ? '<div class="c-open">Abrir página →</div>' : ''}`
+      : `<div class="c-cat">${CAT[b.c]}</div>
+         <div class="c-title">${b.short || b.t}</div>
+         <div class="c-foot"><div class="c-rule"></div><div class="c-author">Jacob P. Goldberg</div></div>
+         ${b.url ? '<div class="c-open">Abrir página →</div>' : ''}`;
     el.innerHTML = `
-      <div class="cover ${pal}">
-        <div class="c-cat">${CAT[b.c]}</div>
-        <div class="c-title">${b.short || b.t}</div>
-        <div class="c-foot"><div class="c-rule"></div><div class="c-author">Jacob P. Goldberg</div></div>
-        ${b.url ? '<div class="c-open">Abrir página →</div>' : ''}
+      <div class="cover ${b.img ? 'cover-art' : pal}">
+        ${coverInner}
       </div>
       <div class="b-meta">
         <div class="b-title">${b.t}</div>
